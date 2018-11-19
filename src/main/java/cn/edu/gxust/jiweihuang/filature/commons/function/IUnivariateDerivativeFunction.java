@@ -25,7 +25,6 @@ package cn.edu.gxust.jiweihuang.filature.commons.function;
  * @version 1.0.0_build-20181120
  * @see IUnivariateFunction
  * @see IUnivariateDifferentiableFunction
- * @since 1.0.0_build-20181120
  */
 public interface IUnivariateDerivativeFunction {
     /**

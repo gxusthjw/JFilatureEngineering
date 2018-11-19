@@ -25,7 +25,6 @@ package cn.edu.gxust.jiweihuang.filature.commons.function;
  * @author JiweiHuang
  * @version 1.0.0_build-20181120
  * @see IUnivariateFunction
- * @since 1.0.0_build-20181120
  */
 public interface IUnivariateIntegralFunction {
     /**

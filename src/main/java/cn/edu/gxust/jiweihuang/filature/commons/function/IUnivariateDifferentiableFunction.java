@@ -33,9 +33,9 @@ import org.hipparchus.analysis.differentiation.UnivariateDifferentiableFunction;
  * @see IUnivariateFunction
  * @see UnivariateDifferentiableFunction
  * @see DSFactory
- * @since 1.0.0_build-20181120
  */
-public interface IUnivariateDifferentiableFunction extends UnivariateDifferentiableFunction, IUnivariateFunction {
+public interface IUnivariateDifferentiableFunction extends
+        UnivariateDifferentiableFunction, IUnivariateFunction {
     /**
      * <p>The method {@code differential(double x, int order)} is used to
      * get differential value of function with any order

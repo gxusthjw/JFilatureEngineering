@@ -41,9 +41,9 @@ import java.io.Serializable;
  * @version 1.0.0_build-20181120
  * @see UnivariateFunction
  * @see Serializable
- * @since 1.0.0_build-20181120
  */
-public interface IUnivariateFunction extends UnivariateFunction, Serializable {
+public interface IUnivariateFunction extends UnivariateFunction,
+        Serializable {
     /**
      * <p>The method {@code lowerX()} is used to get
      * the lower limit of independent variable range. </p>

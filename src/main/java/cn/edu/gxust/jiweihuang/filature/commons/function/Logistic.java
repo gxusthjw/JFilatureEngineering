@@ -19,28 +19,29 @@ package cn.edu.gxust.jiweihuang.filature.commons.function;
 import java.util.Objects;
 
 
-public class Logistic implements ILogistic {
+public final class Logistic implements ILogistic {
 
     private static final long serialVersionUID = 8627279483787287846L;
 
-    private double logisticM;
-    private double logisticK;
-    private double logisticX0;
+    private final double logisticM;
+    private final double logisticK;
+    private final double logisticX0;
 
 
-    public Logistic(double logisticM, double logisticK, double logisticX0) {
+    public Logistic(final double logisticM, final double logisticK,
+                    final double logisticX0) {
         this.logisticM = logisticM;
         this.logisticK = logisticK;
         this.logisticX0 = logisticX0;
     }
 
 
-    public Logistic(double logisticK, double logisticX0) {
+    public Logistic(final double logisticK, final double logisticX0) {
         this(1, logisticK, logisticX0);
     }
 
 
-    public Logistic(double logisticX0) {
+    public Logistic(final double logisticX0) {
         this(1, 1, logisticX0);
     }
 
@@ -51,19 +52,19 @@ public class Logistic implements ILogistic {
 
 
     @Override
-    public double getLogisticM() {
+    public final double getLogisticM() {
         return logisticM;
     }
 
 
     @Override
-    public double getLogisticK() {
+    public final double getLogisticK() {
         return logisticK;
     }
 
 
     @Override
-    public double getLogisticX0() {
+    public final double getLogisticX0() {
         return logisticX0;
     }
 
@@ -80,5 +81,14 @@ public class Logistic implements ILogistic {
     @Override
     public int hashCode() {
         return Objects.hash(getLogisticM(), getLogisticK(), getLogisticX0());
+    }
+
+    @Override
+    public String toString() {
+        return "Logistic{" +
+                "logisticM=" + logisticM +
+                ", logisticK=" + logisticK +
+                ", logisticX0=" + logisticX0 +
+                '}';
     }
 }

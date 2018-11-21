@@ -23,6 +23,9 @@ import java.util.Objects;
  */
 public class QuadraticVertex implements IQuadraticVertex {
 
+    /**
+     * Serialized version number
+     */
     private static final long serialVersionUID = -396577724818520813L;
 
     public final double quadraticVertexA;
@@ -33,7 +36,8 @@ public class QuadraticVertex implements IQuadraticVertex {
                            final double quadraticVertexB,
                            final double quadraticVertexC) {
         if (quadraticVertexA == 0) {
-            throw new IllegalArgumentException(String.format("Expected the parameter {@code quadraticVertexA != 0},but got {@code quadraticVertexA = %.1f}",
+            throw new IllegalArgumentException(String.format(
+                    "Expected the parameter {@code quadraticVertexA != 0},but got {@code quadraticVertexA = %.1f}",
                     quadraticVertexA));
         }
         this.quadraticVertexA = quadraticVertexA;
@@ -72,5 +76,14 @@ public class QuadraticVertex implements IQuadraticVertex {
     @Override
     public int hashCode() {
         return Objects.hash(getQuadraticVertexA(), getQuadraticVertexB(), getQuadraticVertexC());
+    }
+
+    @Override
+    public String toString() {
+        return "QuadraticVertex{" +
+                "quadraticVertexA=" + quadraticVertexA +
+                ", quadraticVertexB=" + quadraticVertexB +
+                ", quadraticVertexC=" + quadraticVertexC +
+                '}';
     }
 }

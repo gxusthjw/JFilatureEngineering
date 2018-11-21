@@ -24,7 +24,8 @@ import org.hipparchus.exception.NullArgumentException;
 import org.hipparchus.util.MathUtils;
 
 /**
- * The interface {@code IQuadraticVertex} the vertex form of quadratic function.
+ * The interface {@code IQuadraticVertex} is used for representing
+ * the vertex form of quadratic function.
  * formula：q(x)=a*(x-b)^2+c
  * <p> Create Date:2018-11-20 </p>
  *
@@ -36,7 +37,8 @@ import org.hipparchus.util.MathUtils;
  */
 public interface IQuadraticVertex extends IQuadratic {
     /**
-     * The parameter {@code a} of quadratic function which must be not equals to zero.
+     * The parameter {@code a} of quadratic function
+     * which must be not equals to zero.
      * <p> Create Date:2018-11-20 </p>
      *
      * @return the parameter {@code a} of quadratic function.
@@ -46,6 +48,7 @@ public interface IQuadraticVertex extends IQuadratic {
     double getQuadraticVertexA();
 
     /**
+     * The parameter {@code b} of quadratic function.
      * <p> Create Date:2018-11-20 </p>
      *
      * @return the parameter {@code b} of quadratic function.
@@ -55,6 +58,7 @@ public interface IQuadraticVertex extends IQuadratic {
     double getQuadraticVertexB();
 
     /**
+     * The parameter {@code c} of quadratic function.
      * <p> Create Date:2018-11-20 </p>
      *
      * @return the parameter {@code c} of quadratic function.
@@ -63,10 +67,25 @@ public interface IQuadraticVertex extends IQuadratic {
      */
     double getQuadraticVertexC();
 
+    /**
+     * <p> The method {} is used to check the parameter {@code a},
+     * which must be is not equals to zero,otherwise will be throw a exception
+     * {@code RuntimeException}. </p>
+     *
+     * @author JiweiHuang
+     * @since 1.0.0_build-20181120
+     */
+    default void checkA() throws RuntimeException {
+        if (getQuadraticVertexA() == 0) {
+            throw new RuntimeException(String.format(
+                    "Expected {getQuadraticVertexA() != 0},but got {getQuadraticVertexA() == %.1f}", getQuadraticVertexA()));
+        }
+    }
     //The default implementation of method in {IQuadratic} interface.
     //================================
 
     /**
+     * The method {vertex()} is used to get the vertex of quadratic function.
      * <p> Create Date:2018-11-20 </p>
      *
      * @return the vertex of quadratic function
@@ -79,18 +98,17 @@ public interface IQuadraticVertex extends IQuadratic {
     }
 
     /**
+     * The method is used to get
+     * the intersection points of the quadratic function with the X-axis.
      * <p> Create Date:2018-11-20 </p>
      *
-     * @return the intersection of the quadratic function with the X-axis.
+     * @return the intersection points of the quadratic function with the X-axis.
      * @author JiweiHuang
      * @since 1.0.0_build-20181120
      */
     @Override
     default double[] xIntersection() {
-        if (getQuadraticVertexA() == 0) {
-            throw new RuntimeException(String.format(
-                    "Expected {getQuadraticVertexA() != 0},but got {getQuadraticVertexA() == %.1f}", getQuadraticVertexA()));
-        }
+        checkA();
         double tem = -getQuadraticVertexC() / getQuadraticVertexA();
         if (tem > 0) {
             return new double[]{getQuadraticVertexB() - Math.sqrt(tem), getQuadraticVertexB() + Math.sqrt(tem)};
@@ -102,6 +120,7 @@ public interface IQuadraticVertex extends IQuadratic {
     }
 
     /**
+     * The method {@code isInvert()} is used to estimate whether is invert of quadratic function.
      * <p> Create Date:2018-11-20 </p>
      *
      * @return whether is invert of quadratic function.
@@ -110,10 +129,7 @@ public interface IQuadraticVertex extends IQuadratic {
      */
     @Override
     default boolean isInvert() {
-        if (getQuadraticVertexA() == 0) {
-            throw new RuntimeException(String.format(
-                    "Expected {getQuadraticVertexA() != 0},but got {getQuadraticVertexA() == %.1f}", getQuadraticVertexA()));
-        }
+        checkA();
         return getQuadraticVertexA() > 0 ? false : true;
     }
 
@@ -125,7 +141,8 @@ public interface IQuadraticVertex extends IQuadratic {
      * <p> Create Date:2018-11-20 </p>
      *
      * @param x independent variable
-     * @return the integral value of integral function at independent variable {@code x}.
+     * @return the integral value of integral function
+     * at independent variable {@code x}.
      * @author JiweiHuang
      * @since 1.0.0_build-20181120
      */
@@ -133,11 +150,12 @@ public interface IQuadraticVertex extends IQuadratic {
     default double integrate(double x) {
         return getQuadraticVertexA() * Math.pow(getQuadraticVertexB(), 2.0) * x +
                 getQuadraticVertexC() * x - getQuadraticVertexA() * getQuadraticVertexB() * Math.pow(x, 2.0) +
-                getQuadraticVertexA() * Math.pow(x, 3) / 3.0;
+                getQuadraticVertexA() * Math.pow(x, 3) / 3.0 + getIntegralConstants();
     }
 
     /**
-     * <p>The method {@code iformula()}is used to get the the analytic expression of integral function.</p>
+     * <p>The method {@code iformula()}is used to get
+     * the analytic expression of integral function.</p>
      * <p> Create Date:2018-11-20 </p>
      *
      * @return the the analytic expression of integral function.
@@ -155,8 +173,12 @@ public interface IQuadraticVertex extends IQuadratic {
     //================================
 
     /**
-     * <p>The method {@code derivative(double x)} is used to get the derivative value of derived function at independent Variable {@code x}.
-     * it should be equal to the result of {@code differential(double x)} which in {@code IUnivariateDifferentiableFunction} interface.</p>
+     * <p>The method {@code derivative(double x)} is used to
+     * get the derivative value of derived function
+     * at independent Variable {@code x}.
+     * it should be equal to the result of
+     * {@code differential(double x)} which in
+     * {@code IUnivariateDifferentiableFunction} interface.</p>
      * <p> Create Date:2018-11-20 </p>
      *
      * @param x independent variable
@@ -188,7 +210,8 @@ public interface IQuadraticVertex extends IQuadratic {
     //================================
 
     /**
-     * The method {@code value(double x)} is used to get the calculated value of function at independent variable {{@code x}}.
+     * The method {@code value(double x)} is used to
+     * get the calculated value of function at independent variable {{@code x}}.
      * <p> Create Date:2018-11-20 </p>
      *
      * @param x independent variable
@@ -221,7 +244,7 @@ public interface IQuadraticVertex extends IQuadratic {
     /**
      * <p> Create Date:2018-11-20 </p>
      *
-     * @return
+     * @return the String form of quadratic function.
      * @author JiweiHuang
      */
     @Override
@@ -231,8 +254,11 @@ public interface IQuadraticVertex extends IQuadratic {
     }
 
     /**
-     * The inner class {@code Parametric} is used for representing the parameterized form of vertex quadratic function.
-     * it make the function to take advantage of {@code org.hipparchus.fitting.AbstractCurveFitter} for curve fitting.
+     * The inner class {@code Parametric} is used for representing
+     * the parameterized form of vertex quadratic function.
+     * it make the function to take advantage
+     * of {@code org.hipparchus.fitting.AbstractCurveFitter} for curve fitting.
+     * <p> Create Date:2018-11-20 </p>
      *
      * @since 1.0.0_build-20181120
      */
@@ -271,10 +297,28 @@ public interface IQuadraticVertex extends IQuadratic {
                 throws MathIllegalArgumentException, NullArgumentException {
             MathUtils.checkNotNull(param);
             MathUtils.checkDimension(param.length, 3);
+            checkA(param[0]);
+        }
+
+        private void checkA(double a) throws RuntimeException {
+            if (a == 0) {
+                throw new RuntimeException(String.format(
+                        "Expected {param[0] != 0},but got {param[0] == 0}"));
+            }
         }
     }
 
     static double value(double x, double a, double b, double c) {
-        return a * Math.pow(x - b, 2) + c;
+        return a * Math.pow(x - b, 2.0) + c;
+    }
+
+    static double integrate(double x, double a, double b, double c) {
+        return a * Math.pow(b, 2.0) * x +
+                c * x - a * b * Math.pow(x, 2.0) +
+                a * Math.pow(x, 3.0) / 3.0;
+    }
+
+    static double derivative(double x, double a, double b, double c) {
+        return 2 * a * (x - b);
     }
 }

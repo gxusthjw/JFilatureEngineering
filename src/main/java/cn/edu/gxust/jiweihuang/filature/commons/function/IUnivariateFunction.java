@@ -32,9 +32,6 @@ import java.io.Serializable;
  * it has many feature,include the differential (derivative) with any order,
  * numerical integration and interpolation,etc.</p>
  *
- * <p>The library {@code JFreeChart} is a scientific plotting library,
- * which provides many plotting feature for science.</p>
- *
  * <p>Create date:2018-11-20.</p>
  *
  * @author JiweiHuang
@@ -48,8 +45,10 @@ public interface IUnivariateFunction extends UnivariateFunction,
      * <p>The method {@code lowerX()} is used to get
      * the lower limit of independent variable range. </p>
      * <p>The implement class (or subinterface) of this interface
-     * should override this method.</p>
-     * <p>The default value of this method:{@code Double.NEGATIVE_INFINITY}.</p>
+     * should override this method for changing the the lower limit
+     * of independent variable range.</p>
+     * <p>The default value of this method:
+     * {@code Double.NEGATIVE_INFINITY}.</p>
      * <p>Create date:2018-11-20.</p>
      *
      * @return the lower limit of independent variable range.
@@ -64,8 +63,10 @@ public interface IUnivariateFunction extends UnivariateFunction,
      * <p>The method {@code upperX()} is used to get
      * the upper limit of independent variable range. </p>
      * <p>The implement class (or subinterface) of this interface
-     * should override this method.</p>
-     * <p>The default value of this method:{@code Double.POSITIVE_INFINITY}.</p>
+     * should override this method for changing the upper limit of
+     * independent variable range..</p>
+     * <p>The default value of this method:
+     * {@code Double.POSITIVE_INFINITY}.</p>
      * <p>Create date:2018-11-20.</p>
      *
      * @return the upper limit of independent variable range.
@@ -78,10 +79,11 @@ public interface IUnivariateFunction extends UnivariateFunction,
 
 
     /**
-     * The method {checkX(double x)} is used to check {@code x} whether in independent variable range.
+     * The method {checkX(double x)} is used to
+     * check {@code x} whether which be in the range of independent variable.
      * <p>Create date:2018-11-20.</p>
      *
-     * @param x the x-value,independent variable range.
+     * @param x the x-value,independent variable.
      * @author JiweiHuang
      * @since 1.0.0_build-20181120
      */
@@ -97,8 +99,7 @@ public interface IUnivariateFunction extends UnivariateFunction,
      * the string form of analytical expression of univariate function,
      * for instance, {@code f(x)=a*x^2+c}.</p>
      * <p>The implement class (or subinterface) of this interface
-     * should override this method.</p>
-     * <p>The default value of this method:{@code f(x)}。</p>
+     * should override this method for getting suitable string form.</p>
      * <p>Create date:2018-11-20.</p>
      *
      * @return the string form of analytical expression of univariate function.

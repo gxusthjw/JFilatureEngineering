@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package cn.edu.gxust.jiweihuang.java.math.function.univariate;
 
 import cn.edu.gxust.jiweihuang.java.math.function.IUnivariateDerivativeFunction;
